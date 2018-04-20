@@ -25,6 +25,13 @@ module JavaBuildpack
     # Encapsulates the functionality for enabling zero-touch AppDynamics support.
     class SigfxAgent < JavaBuildpack::Component::VersionedDependencyComponent
 
+      def initialize(context)
+        super(context)
+        @version, @uri = agent_download_url if supports?
+        @logger        = JavaBuildpack::Logging::LoggerFactory.instance.get_logger SigfxAgent
+      end
+
+
       # (see JavaBuildpack::Component::BaseComponent#compile)
       def compile
         download_tar(false, @droplet.sandbox, 'Collectd Bundle')
