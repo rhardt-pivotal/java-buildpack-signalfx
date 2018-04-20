@@ -32,76 +32,11 @@ module JavaBuildpack
 
       end
 
-      # (see JavaBuildpack::Component::BaseComponent#release)
-      def release
-        credentials = @application.services.find_service(FILTER, 'host-name')['credentials']
-        java_opts   = @droplet.java_opts
-        java_opts.add_javaagent(@droplet.sandbox + 'javaagent.jar')
-
-        application_name java_opts, credentials
-        tier_name java_opts, credentials
-        node_name java_opts, credentials
-        account_access_key java_opts, credentials
-        account_name java_opts, credentials
-        host_name java_opts, credentials
-        port java_opts, credentials
-        ssl_enabled java_opts, credentials
-      end
-
       protected
 
       # (see JavaBuildpack::Component::VersionedDependencyComponent#supports?)
       def supports?
         @application.environment.key? 'SIGNALFX_ACCESS_TOKEN'
-      end
-
-      private
-
-      FILTER = /app[-]?dynamics/
-
-      private_constant :FILTER
-
-      def application_name(java_opts, credentials)
-        name = credentials['application-name'] || @configuration['default_application_name'] ||
-          @application.details['application_name']
-        java_opts.add_system_property('appdynamics.agent.applicationName', name.to_s)
-      end
-
-      def account_access_key(java_opts, credentials)
-        account_access_key = credentials['account-access-key']
-        java_opts.add_system_property 'appdynamics.agent.accountAccessKey', account_access_key if account_access_key
-      end
-
-      def account_name(java_opts, credentials)
-        account_name = credentials['account-name']
-        java_opts.add_system_property 'appdynamics.agent.accountName', account_name if account_name
-      end
-
-      def host_name(java_opts, credentials)
-        host_name = credentials['host-name']
-        raise "'host-name' credential must be set" unless host_name
-        java_opts.add_system_property 'appdynamics.controller.hostName', host_name
-      end
-
-      def node_name(java_opts, credentials)
-        name = credentials['node-name'] || @configuration['default_node_name']
-        java_opts.add_system_property('appdynamics.agent.nodeName', name.to_s)
-      end
-
-      def port(java_opts, credentials)
-        port = credentials['port']
-        java_opts.add_system_property 'appdynamics.controller.port', port if port
-      end
-
-      def ssl_enabled(java_opts, credentials)
-        ssl_enabled = credentials['ssl-enabled']
-        java_opts.add_system_property 'appdynamics.controller.ssl.enabled', ssl_enabled if ssl_enabled
-      end
-
-      def tier_name(java_opts, credentials)
-        name = credentials['tier-name'] || @configuration['default_tier_name'] ||
-          @application.details['application_name']
-        java_opts.add_system_property('appdynamics.agent.tierName', name.to_s)
       end
 
     end
