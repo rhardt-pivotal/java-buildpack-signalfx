@@ -52,7 +52,7 @@ module JavaBuildpack
 
       # (see JavaBuildpack::Component::VersionedDependencyComponent#supports?)
       def supports?
-        File.directory? File.join @application.root, '.signalfx' and @application.environment.key? 'SIGNALFX_ACCESS_TOKEN'
+        @application.environment.key? 'SIGNALFX_ACCESS_TOKEN'
       end
 
       private
