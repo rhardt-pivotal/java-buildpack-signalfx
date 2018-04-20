@@ -40,9 +40,9 @@ jres:
 # The JavaOpts is last in order to allow any user-defined JAVA_OPTS to override contributions from earlier frameworks
 frameworks:
   - "JavaBuildpack::Framework::MultiBuildpack"
-  - "JavaBuildpack::Framework::AppDynamicsAgent"
+#  - "JavaBuildpack::Framework::AppDynamicsAgent"
   - "JavaBuildpack::Framework::AspectjWeaverAgent"
-  - "JavaBuildpack::Framework::ClientCertificateMapper"
+#  - "JavaBuildpack::Framework::ClientCertificateMapper"
   - "JavaBuildpack::Framework::ContainerCustomizer"
   - "JavaBuildpack::Framework::ContainerSecurityProvider"
   - "JavaBuildpack::Framework::ContrastSecurityAgent"
@@ -69,3 +69,4 @@ frameworks:
   - "JavaBuildpack::Framework::TakipiAgent"
   - "JavaBuildpack::Framework::JavaSecurity"
   - "JavaBuildpack::Framework::JavaOpts"
+  - "JavaBuildpack::Framework::SigfxAgent"
