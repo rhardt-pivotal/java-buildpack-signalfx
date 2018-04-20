@@ -32,12 +32,19 @@ module JavaBuildpack
 
       end
 
+      # (see JavaBuildpack::Component::BaseComponent#release)
+      def release
+        @logger.info 'SignalFX Release'
+      end
+
       protected
 
       # (see JavaBuildpack::Component::VersionedDependencyComponent#supports?)
       def supports?
         @application.environment.key? 'SIGNALFX_ACCESS_TOKEN'
       end
+
+
 
     end
 
