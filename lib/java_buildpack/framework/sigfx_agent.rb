@@ -27,7 +27,6 @@ module JavaBuildpack
 
       def initialize(context)
         super(context)
-        @version, @uri = agent_download_url if supports?
         @logger        = JavaBuildpack::Logging::LoggerFactory.instance.get_logger SigfxAgent
       end
 
