@@ -26,7 +26,7 @@ fi
 for conf in $(find $CONFIG_DIR -name "*.conf")
 do
   echo "Detected configuration file $(basename $conf)."
-  cp $conf $BUNDLE_DIR/etc/managed_config/
+  cat $conf | erb > $BUNDLE_DIR/etc/managed_config/$(basename $conf)
 done
 
 bash $BUNDLE_DIR/run.sh
