@@ -13,6 +13,7 @@ export SFX_DIM_app_id=$(vcap_app_jq '.application_id')
 export SFX_DIM_app_name=$(vcap_app_jq '.application_name')
 export SFX_DIM_app_instance_index=$(vcap_app_jq '.instance_index')
 export SFX_DIM_space_name=$(vcap_app_jq '.space_name')
+export DIMS="?app_id=$SFX_DIM_app_id&app_name=$SFX_DIM_app_name&app_instance_index=$SFX_DIM_app_instance_index&space_name=$SFX_DIM_space_name"
 export ENABLE_JMX=${ENABLE_JMX:-false}
 
 export HOSTNAME=${CF_INSTANCE_IP}
