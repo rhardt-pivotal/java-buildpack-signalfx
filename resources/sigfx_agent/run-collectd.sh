@@ -9,6 +9,7 @@ vcap_app_jq() {
 
 # The token should be provided in the app manifest as an envvar
 export ACCESS_TOKEN=$SIGNALFX_ACCESS_TOKEN
+export APP_ID=$(vcap_app_jq '.application_id')
 export SFX_DIM_app_id=$(vcap_app_jq '.application_id')
 export SFX_DIM_app_name=$(vcap_app_jq '.application_name')
 export SFX_DIM_app_instance_index=$(vcap_app_jq '.instance_index')
